@@ -1,0 +1,12 @@
+name: DimensionManager
+version: ${project.version}
+main: codes.ultux.plugins.dimensionmanager.dimensionmanager.Main
+api-version: 1.15
+authors: [ ULTUX ]
+description: This plugin allows server admins to toggle nether and end.
+commands:
+  dimensionManager:
+    description: Manage dimensions state.
+    aliases:
+      - dimmanager
+      - dm
