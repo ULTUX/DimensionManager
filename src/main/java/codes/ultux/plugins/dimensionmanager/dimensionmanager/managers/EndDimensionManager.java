@@ -33,10 +33,7 @@ public class EndDimensionManager extends DimensionManager{
         boolean isToEnd = to != null && to.getWorld() != null && to.getWorld().equals(endWorld);
         if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.END_PORTAL) || isToEnd) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED+"End został wyłączony!");
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().damage(0.5);
+            printMessage(event.getPlayer(), "End został wyłączony!");
 
         }
     }

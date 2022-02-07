@@ -33,10 +33,7 @@ public class NetherDimensionManager extends DimensionManager {
         boolean isToNether = to != null && to.getWorld() != null && to.getWorld().equals(netherWorld);
         if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) || isToNether) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED+"Nether został wyłączony!");
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().damage(0.5);
+            printMessage(event.getPlayer(), "Nether został wyłączony!");
 
         }
 

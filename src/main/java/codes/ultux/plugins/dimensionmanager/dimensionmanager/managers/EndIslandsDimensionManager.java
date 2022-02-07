@@ -59,13 +59,9 @@ public class EndIslandsDimensionManager extends DimensionManager{
         Location to = event.getTo();
         boolean isToEndIsland = to != null && to.getWorld() != null && to.getWorld().equals(endWorld)
                 && to.distance(new Location(to.getWorld(), 0, 0, 0)) > 1000;
-        if (event.getCause().equals(PlayerTeleportEvent.TeleportCause.END_PORTAL) || isToEndIsland) {
+        if (isToEndIsland) {
             event.setCancelled(true);
-            event.getPlayer().sendMessage(ChatColor.RED+"Wyspy endu zostały wyłączone!");
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().playSound(event.getPlayer().getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
-            event.getPlayer().damage(0.5);
-
+            printMessage(event.getPlayer(), "Wyspy endu zostały wyłączone!");
         }
 
     }

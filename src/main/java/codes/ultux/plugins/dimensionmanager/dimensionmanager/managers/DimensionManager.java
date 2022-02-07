@@ -7,9 +7,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 public abstract class DimensionManager implements Listener {
+    private final HashMap<String, Long> messagedPlayers = new HashMap<>();
+    private static final int MESSAGE_DELAY = 1000;
     final Main instance;
     World defaultWorld;
     /**
@@ -68,6 +72,26 @@ public abstract class DimensionManager implements Listener {
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
             player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
         });
+    }
+
+    protected void printMessage(Player player, String message) {
+        boolean printMessage = false;
+        if (messagedPlayers.containsKey(player.getUniqueId().toString()) &&
+                (messagedPlayers.get(player.getUniqueId().toString()) + MESSAGE_DELAY < System.currentTimeMillis())) {
+            messagedPlayers.replace(player.getUniqueId().toString(), System.currentTimeMillis());
+            printMessage = true;
+        }
+        else if (!messagedPlayers.containsKey(player.getUniqueId().toString())){
+            messagedPlayers.put(player.getUniqueId().toString(), System.currentTimeMillis());
+            printMessage = true;
+        }
+
+        if (printMessage){
+            player.sendMessage(ChatColor.RED+message);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
+            player.playSound(player.getLocation(), Sound.BLOCK_NOTE_BLOCK_BASS, 1.0f, 0.1f);
+            player.damage(0.5);
+        }
     }
 
 }
