@@ -1,1 +1,1 @@
-"# DimensionManager" 
+# DimensionManager
